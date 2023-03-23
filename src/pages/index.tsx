@@ -90,12 +90,20 @@ export default function Home() {
     if (router.isReady) {
       const { repoName, page, sort, rows } = router.query;
 
-      GlobalStore.setRepoName(repoName as string);
-      GlobalStore.setPage(parseInt(page as string));
-      GlobalStore.setSortBy(sort as "stars" | "forks" | "issues" | "updated");
-      GlobalStore.setNumberOfRows(
-        parseInt(rows as string) as 10 | 20 | 30 | 40 | 50
-      );
+      if (repoName) {
+        GlobalStore.setRepoName(repoName as string);
+      }
+      if (page) {
+        GlobalStore.setPage(parseInt(page as string));
+      }
+      if (sort) {
+        GlobalStore.setSortBy(sort as "stars" | "forks" | "issues" | "updated");
+      }
+      if (rows) {
+        GlobalStore.setNumberOfRows(
+          parseInt(rows as string) as 10 | 20 | 30 | 40 | 50
+        );
+      }
 
       setHasMounted(true);
     }
